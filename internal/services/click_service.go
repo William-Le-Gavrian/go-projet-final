@@ -3,8 +3,8 @@ package services
 import (
 	"fmt"
 
-	"github.com/axellelanca/urlshortener/internal/models"
-	"github.com/axellelanca/urlshortener/internal/repository" // Importe le package repository
+	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
+	"github.com/William-Le-Gavrian/go-projet-final/internal/repository" // Importe le package repository
 )
 
 // TODO : créer la struct

@@ -1,4 +1,4 @@
-module github.com/axellelanca/urlshortener
+module github.com/William-Le-Gavrian/go-projet-final
 
 go 1.24.3
 

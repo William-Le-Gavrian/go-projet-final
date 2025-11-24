@@ -6,9 +6,9 @@ import (
 	"net/url" // Pour valider le format de l'URL
 	"os"
 
-	cmd2 "github.com/axellelanca/urlshortener/cmd"
-	"github.com/axellelanca/urlshortener/internal/repository"
-	"github.com/axellelanca/urlshortener/internal/services"
+	cmd2 "github.com/William-Le-Gavrian/go-projet-final/cmd"
+	"github.com/William-Le-Gavrian/go-projet-final/internal/repository"
+	"github.com/William-Le-Gavrian/go-projet-final/internal/services"
 	"github.com/spf13/cobra"
 	"gorm.io/driver/sqlite" // Driver SQLite pour GORM
 	"gorm.io/gorm"
@@ -40,7 +40,7 @@ Exemple:
 		}
 
 		// TODO S'assurer que la connexion est fermée à la fin de l'exécution de la commande
-		
+
 		// TODO : Initialiser les repositories et services nécessaires NewLinkRepository & NewLinkService
 
 		// TODO : Appeler le LinkService et la fonction CreateLink pour créer le lien court.
