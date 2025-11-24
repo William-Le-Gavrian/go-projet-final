@@ -70,7 +70,7 @@ func (m *UrlMonitor) checkUrls() {
 		// Si c'est la première vérification pour ce lien, on initialise l'état sans notifier.
 		if !exists {
 			log.Printf("[MONITOR] État initial pour le lien %s (%s) : %s",
-				link.ShortCode, link.LongURL, formatState(currentState))
+				link.Shortcode, link.LongURL, formatState(currentState))
 			continue
 		}
 
@@ -79,7 +79,7 @@ func (m *UrlMonitor) checkUrls() {
 		// log.Printf("[NOTIFICATION] Le lien %s (%s) est passé de %s à %s !"
 		if currentState != previousState {
 			log.Printf("[NOTIFICATION] Le lien %s (%s) est passé de %s à %s !",
-				link.ShortCode, link.LongURL, formatState(previousState), formatState(currentState))
+				link.Shortcode, link.LongURL, formatState(previousState), formatState(currentState))
 		}
 	}
 	log.Println("[MONITOR] Vérification de l'état des URLs terminée.")

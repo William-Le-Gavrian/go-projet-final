@@ -79,9 +79,9 @@ Exemple:
 			os.Exit(1)
 		}
 
-		fullShortURL := fmt.Sprintf("%s/%s", cfg.Server.BaseURL, link.ShortCode)
+		fullShortURL := fmt.Sprintf("%s/%s", cfg.Server.BaseURL, link.Shortcode)
 		fmt.Printf("URL courte créée avec succès:\n")
-		fmt.Printf("Code: %s\n", link.ShortCode)
+		fmt.Printf("Code: %s\n", link.Shortcode)
 		fmt.Printf("URL complète: %s\n", fullShortURL)
 	},
 }

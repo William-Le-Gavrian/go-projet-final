@@ -12,7 +12,7 @@ import "time"
 
 type Link struct {
 	ID        uint      `gorm:"primaryKey"`
-	ShortCode string    `gorm:"type:varchar(10);uniqueIndex"`
+	Shortcode string    `gorm:"type:varchar(10);uniqueIndex"`
 	LongURL   string    `gorm:"not null"`
 	CreateAt  time.Time `gorm:"autoCreateTime"`
 }

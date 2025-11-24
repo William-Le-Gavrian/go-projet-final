@@ -77,7 +77,7 @@ Exemple:
 			os.Exit(1)
 		}
 
-		fmt.Printf("Statistiques pour le code court: %s\n", link.ShortCode)
+		fmt.Printf("Statistiques pour le code court: %s\n", link.Shortcode)
 		fmt.Printf("URL longue: %s\n", link.LongURL)
 		fmt.Printf("Total de clics: %d\n", totalClicks)
 	},
