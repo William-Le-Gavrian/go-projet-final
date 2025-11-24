@@ -89,15 +89,16 @@ url-shortener/
 
 Suivez ces étapes pour mettre en place le projet et tester votre application (quand elle fonctionnera, évidemment).
 
-### 1. Préparation Initiale
+#### 1. Préparation Initiale
 
-1. **Clonez le dépôt :**
+**Clonez le dépôt :**
+
 ```bash
 git clone https://github.com/William-Le-Gavrian/go-projet-final.git
 cd go-projet-final # Naviguez vers le dossier du projet cloné
 ```
 
-2. **Téléchargez et nettoyez les dépendances :**
+###2. **Téléchargez et nettoyez les dépendances :**
 
 ```bash
 go mod tidy
@@ -112,17 +113,17 @@ go build -o url-shortener
 ```
 Désormais, toutes les commandes seront lancées avec ./url-shortener.
 
-### Initialisation de la Base de Données
+###3. Initialisation de la Base de Données
 
 Avant de démarrer le serveur, créez le fichier de base de données SQLite et ses tables :
 
-1.  **Exécutez les migrations :**
+**Exécutez les migrations :**
 ```bash
 ./url-shortener migrate
 ```
 Un message de succès confirmera la création des tables. Un fichier url_shortener.db sera créé à la racine du projet.
 
-### Lancer le Serveur et les Processus de Fond
+####4. Lancer le Serveur et les Processus de Fond
 
 C'est l'étape qui démarre le cœur de votre application. Elle démarre le serveur web, les workers qui enregistrent les clics, et le moniteur d'URLs.
 
@@ -132,11 +133,11 @@ Démarrez le service :
 ```
 Laissez ce terminal ouvert et actif. Il affichera les logs du serveur HTTP, des workers de clics et du moniteur d'URLs.
 
-### 4. Interagir avec le Service (Utilise un **Nouveau Terminal**)
+### 5. Interagir avec le Service (Utilise un **Nouveau Terminal**)
 
 Ouvre une **nouvelle fenêtre de terminal** pour exécuter les commandes CLI et tester les APIs pendant que le serveur est en cours d'exécution.
 
-#### 4.1. Créer une URL courte (via la CLI)
+### 5.1. Créer une URL courte (via la CLI)
 
 Raccourcis une URL longue en utilisant la commande `create` :
 
@@ -152,11 +153,11 @@ URL complète: http://localhost:8080/XYZ123
 
 Note le Code (ex: XYZ123) et l'URL complète pour les étapes suivantes.
 
-#### 4.2. Accéder à l'URL courte (via Navigateur)
+### 5.2. Accéder à l'URL courte (via Navigateur)
 1. Ouvre ton navigateur web et accède à l'URL complète que tu as obtenue (par exemple, http://localhost:8080/XYZ123).
 2. Le navigateur devrait te rediriger instantanément vers l'URL longue originale. Dans le terminal où le serveur tourne (./url-shortener run-server), tu devrais voir des logs indiquant qu'un clic a été détecté et envoyé au worker asynchrone.
 
-#### 4.3. Consulter les Statistiques (via la CLI)
+### 5.3. Consulter les Statistiques (via la CLI)
 Vérifie combien de fois ton URL courte a été visitée :
 
 1. Affiche les statistiques :
@@ -171,7 +172,7 @@ Total de clics: 1
 ```
 (Le nombre de clics augmentera à chaque fois que tu accèderas à l'URL courte via ton navigateur).
 
-#### 4.4. Tester l'API de Santé (via curl)
+### 5.4. Tester l'API de Santé (via curl)
 Vérifie si ton serveur est bien opérationnel :
 1. Exécute la commande curl :
 ```
@@ -182,7 +183,7 @@ Tu devrais obtenir :
 {"status":"ok"}
 ```
 
-#### 4.5. Observer le Moniteur d'URLs
+### 5.5. Observer le Moniteur d'URLs
 Le moniteur fonctionne en arrière-plan et vérifie la disponibilité des URLs longues toutes les 5 minutes (par défaut).
 
 Observe les logs dans le terminal où run-server tourne. Si l'état d'une URL que tu as raccourcie change (par exemple, si le site devient inaccessible), tu verras un message [NOTIFICATION] similaire à :
@@ -191,10 +192,10 @@ Observe les logs dans le terminal où run-server tourne. Si l'état d'une URL qu
 ```
 (Pour tester cela, tu pourrais raccourcir une URL vers un site que tu sais hors ligne ou une adresse IP inexistante, et attendre l'intervalle de surveillance.)
 
-### 5. Arrêter le Serveur
+### 6. Arrêter le Serveur
 
 Quand tu as terminé tes tests et que tu souhaites arrêter le service :
-1. Dans le terminal où ./url-shortener run-server tourne, appuie sur :
+Dans le terminal où ./url-shortener run-server tourne, appuie sur :
 ```
 Ctrl + C
 ```
