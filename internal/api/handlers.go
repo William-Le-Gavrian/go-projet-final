@@ -170,6 +170,7 @@ func GetLinkStatsHandler(linkService *services.LinkService) gin.HandlerFunc {
 		// Retourne les statistiques dans la réponse JSON.
 		c.JSON(http.StatusOK, gin.H{
 			"short_code":   link.Shortcode,
+			"short_url":    "http://localhost:8080/" + link.Shortcode,
 			"long_url":     link.LongURL,
 			"total_clicks": totalClicks,
 		})
