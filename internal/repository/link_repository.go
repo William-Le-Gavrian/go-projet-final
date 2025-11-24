@@ -11,6 +11,13 @@ import (
 // pour les opérations CRUD sur les liens.
 // L'implémenter avec les méthodes nécessaires
 
+type LinkRepository interface {
+	CreateLink(link *models.Link) error
+	GetLinkByShortCode(shortCode string) (*models.Link, error)
+	GetAllLinks() ([]models.Link, error)
+	CountClicksByLinkID(linkID uint) (int, error)
+}
+
 // TODO :  GormLinkRepository est l'implémentation de LinkRepository utilisant GORM.
 type GormLinkRepository struct {
 }
