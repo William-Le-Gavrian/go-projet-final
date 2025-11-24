@@ -12,6 +12,15 @@ import (
 	"gorm.io/gorm" // Pour gérer gorm.ErrRecordNotFound
 )
 
+type ClickEvent struct {
+	ShortCode string
+	LongURL   string
+	Timestamp time.Time
+	IP        string
+	UserAgent string
+	Referrer  string
+}
+
 // TODO Créer une variable ClickEventsChannel qui est un chan de type ClickEvent
 // ClickEventsChannel est le channel global (ou injecté) utilisé pour envoyer les événements de clic
 // aux workers asynchrones. Il est bufferisé pour ne pas bloquer les requêtes de redirection.
@@ -74,7 +83,7 @@ func CreateShortLinkHandler(linkService *services.LinkService) gin.HandlerFunc {
 
 		// Retourne le code court et l'URL longue dans la réponse JSON.
 		// TODO Choisir le bon code HTTP
-		c.JSON(XXX, gin.H{
+		c.JSON(http.StatusCreated, gin.H{
 			"short_code":     link.ShortCode,
 			"long_url":       link.LongURL,
 			"full_short_url": "http://localhost:8080/" + link.ShortCode, // TODO: Utiliser cfg.Server.BaseURL ici
