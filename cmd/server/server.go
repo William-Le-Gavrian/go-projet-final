@@ -12,7 +12,6 @@ import (
 
 	cmd2 "github.com/William-Le-Gavrian/go-projet-final/cmd"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/api"
-	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/monitor"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/repository"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/services"
@@ -61,14 +60,11 @@ puis lance le serveur HTTP.`,
 		// Laissez le log
 		log.Println("Services métiers initialisés.")
 
-		router := gin.Default()
-		api.SetupRoutes(router, linkService, cfg.Analytics.BufferSize)
-
 		// TODO : Initialiser le channel ClickEventsChannel (api/handlers) des événements de clic et lancer les workers (StartClickWorkers).
 		// Le channel est bufferisé avec la taille configurée.
 		// Passez le channel et le clickRepo aux workers.
 		workerCount := 2 // Default worker count
-		workers.StartClickWorkers(workerCount, api.ClickEventsChannel, GormClickRepo, GormLinkRepository)
+		workers.StartClickWorkers(workerCount, api.ClickEventsChannel, GormClickRepo)
 
 		// TODO : Remplacer les XXX par les bonnes variables
 		log.Printf("Channel d'événements de clic initialisé avec un buffer de %d. %d worker(s) de clics démarré(s).",
