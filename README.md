@@ -89,7 +89,7 @@ url-shortener/
 
 Suivez ces étapes pour mettre en place le projet et tester votre application (quand elle fonctionnera, évidemment).
 
-#### 1. Préparation Initiale
+### 1. Préparation Initiale
 
 **Clonez le dépôt :**
 
@@ -104,7 +104,7 @@ cd go-projet-final # Naviguez vers le dossier du projet cloné
 go mod tidy
 ```
 
-## Pour tester votre projet :
+#### Pour tester votre projet :
 
 ### Construisez l'exécutable :
 Ceci compile votre application et crée un fichier url-shortener à la racine du projet.
@@ -113,7 +113,7 @@ go build -o url-shortener
 ```
 Désormais, toutes les commandes seront lancées avec ./url-shortener.
 
-###3. Initialisation de la Base de Données
+### 3. Initialisation de la Base de Données
 
 Avant de démarrer le serveur, créez le fichier de base de données SQLite et ses tables :
 
@@ -123,7 +123,7 @@ Avant de démarrer le serveur, créez le fichier de base de données SQLite et s
 ```
 Un message de succès confirmera la création des tables. Un fichier url_shortener.db sera créé à la racine du projet.
 
-####4. Lancer le Serveur et les Processus de Fond
+### 4. Lancer le Serveur et les Processus de Fond
 
 C'est l'étape qui démarre le cœur de votre application. Elle démarre le serveur web, les workers qui enregistrent les clics, et le moniteur d'URLs.
 
