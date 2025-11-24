@@ -78,6 +78,7 @@ Exemple:
 		}
 
 		fmt.Printf("Statistiques pour le code court: %s\n", link.Shortcode)
+		fmt.Printf("URL courte: %s\n", cfg.Server.BaseURL+"/"+link.Shortcode)
 		fmt.Printf("URL longue: %s\n", link.LongURL)
 		fmt.Printf("Total de clics: %d\n", totalClicks)
 	},
@@ -87,7 +88,7 @@ Exemple:
 // Il est utilisé pour définir les flags que cette commande accepte.
 func init() {
 	// TODO : Définir le flag --code pour la commande create.
-	StatsCmd.Flags().StringP("url", "u", "", "Code pour récuperer les statistiques")
+	StatsCmd.Flags().StringP("code", "u", "", "Code pour récuperer les statistiques")
 
 	// TODO :  Marquer le flag comme requis
 	StatsCmd.MarkFlagRequired("code")
