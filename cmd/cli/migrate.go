@@ -6,8 +6,8 @@ import (
 
 	cmd2 "github.com/William-Le-Gavrian/go-projet-final/cmd"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
+	"github.com/glebarez/sqlite" // Driver SQLite pour GORM
 	"github.com/spf13/cobra"
-	"gorm.io/driver/sqlite" // Driver SQLite pour GORM
 	"gorm.io/gorm"
 )
 

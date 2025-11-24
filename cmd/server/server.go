@@ -12,13 +12,14 @@ import (
 
 	cmd2 "github.com/William-Le-Gavrian/go-projet-final/cmd"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/api"
+	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/monitor"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/repository"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/services"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/workers"
 	"github.com/gin-gonic/gin"
+	"github.com/glebarez/sqlite" // Driver SQLite pour GORM
 	"github.com/spf13/cobra"
-	"gorm.io/driver/sqlite" // Driver SQLite pour GORM
 	"gorm.io/gorm"
 )
 
@@ -59,6 +60,7 @@ puis lance le serveur HTTP.`,
 
 		// Laissez le log
 		log.Println("Services métiers initialisés.")
+		api.ClickEventsChannel = make(chan models.ClickEvent, cfg.Analytics.BufferSize)
 
 		// TODO : Initialiser le channel ClickEventsChannel (api/handlers) des événements de clic et lancer les workers (StartClickWorkers).
 		// Le channel est bufferisé avec la taille configurée.

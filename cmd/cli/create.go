@@ -10,8 +10,8 @@ import (
 	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/repository"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/services"
+	"github.com/glebarez/sqlite" // Driver SQLite pour GORM
 	"github.com/spf13/cobra"
-	"gorm.io/driver/sqlite" // Driver SQLite pour GORM
 	"gorm.io/gorm"
 )
 

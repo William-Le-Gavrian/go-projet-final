@@ -51,15 +51,3 @@ func (r *GormClickRepository) CountClicksByLinkID(linkID uint) (int, error) {
 	return int(count), nil // Convert the int64 count to an int
 
 }
-
-// SaveClick enregistre un ClickEvent dans la base de données.
-// Convertit ClickEvent en Click et utilise CreateClick pour persister.
-func (r *GormClickRepository) SaveClick(event models.ClickEvent) error {
-	click := models.Click{
-		LinkID:    event.LinkID,
-		Timestamp: event.Timestamp,
-		UserAgent: event.UserAgent,
-		IPAddress: event.IPAddress,
-	}
-	return r.CreateClick(&click)
-}
