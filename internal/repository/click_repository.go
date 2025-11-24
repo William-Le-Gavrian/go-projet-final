@@ -13,6 +13,8 @@ import (
 // Implémenter l'interface avec les méthodes nécessaires.
 type ClickRepository interface {
 	// Utilisé par LinkService pour les stats
+	CreateClick(click *models.Click) error
+	CountClicksByLinkID(linkID uint) (int, error)
 }
 
 // GormClickRepository est l'implémentation de l'interface ClickRepository utilisant GORM.
@@ -30,7 +32,10 @@ func NewClickRepository(db *gorm.DB) *GormClickRepository {
 // Elle reçoit un pointeur vers une structure models.Click et la persiste en utilisant GORM.
 func (r *GormClickRepository) CreateClick(click *models.Click) error {
 	// TODO : Utiliser GORM pour créer une nouvelle entrée dans la table "clicks"
-
+	if err := r.db.Create(click).Error; err != nil {
+		return fmt.Errorf("failed to create click: %w", err)
+	}
+	return nil
 }
 
 // CountClicksByLinkID compte le nombre total de clics pour un ID de lien donné.
@@ -39,6 +44,22 @@ func (r *GormClickRepository) CountClicksByLinkID(linkID uint) (int, error) {
 	var count int64 // GORM retourne un int64 pour les décomptes
 	// TODO : Utiliser GORM pour compter les enregistrements dans la table 'clicks'
 	// où 'LinkID' correspond à l'ID de lien fourni.
+	if err := r.db.Model(&models.Click{}).Where("link_id = ?", linkID).Count(&count).Error; err != nil {
+		return 0, fmt.Errorf("failed to count clicks: %w", err)
+	}
 
 	return int(count), nil // Convert the int64 count to an int
+
+}
+
+// SaveClick enregistre un ClickEvent dans la base de données.
+// Convertit ClickEvent en Click et utilise CreateClick pour persister.
+func (r *GormClickRepository) SaveClick(event models.ClickEvent) error {
+	click := models.Click{
+		LinkID:    event.LinkID,
+		Timestamp: event.Timestamp,
+		UserAgent: event.UserAgent,
+		IPAddress: event.IPAddress,
+	}
+	return r.CreateClick(&click)
 }
