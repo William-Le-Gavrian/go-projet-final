@@ -38,14 +38,15 @@ func NewLinkService(linkRepo repository.LinkRepository) *LinkService {
 // Il utilise le package 'crypto/rand' pour éviter la prévisibilité.
 // Je vous laisse chercher un peu :) C'est faisable en une petite dizaine de ligne
 func (s *LinkService) GenerateShortCode(length int) (string, error) {
-	var shortCode = make([]byte, length)
+	shortCode := make([]byte, length)
 	lenCharset := big.NewInt(int64(len(charset)))
+
 	for i := 0; i < length; i++ {
 		randInt, err := rand.Int(rand.Reader, lenCharset)
 		if err != nil {
 			return "", err
 		}
-		shortCode = append(shortCode, charset[randInt.Int64()])
+		shortCode[i] = charset[randInt.Int64()]
 	}
 
 	return string(shortCode), nil
@@ -70,6 +71,7 @@ func (s *LinkService) CreateLink(longURL string) (*models.Link, error) {
 		code, err := s.GenerateShortCode(6)
 
 		// TODO : Vérifie si le code généré existe déjà en base de données (GetLinkbyShortCode)
+		_, err = s.linkRepo.GetLinkByShortCode(code)
 
 		if err != nil {
 			if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -91,7 +93,7 @@ func (s *LinkService) CreateLink(longURL string) (*models.Link, error) {
 
 	// TODO Crée une nouvelle instance du modèle Link.
 	link := &models.Link{
-		ShortCode: shortCode,
+		Shortcode: shortCode,
 		LongURL:   longURL,
 		CreateAt:  time.Now(),
 	}
