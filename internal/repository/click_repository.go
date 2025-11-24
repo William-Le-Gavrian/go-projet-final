@@ -33,7 +33,7 @@ func NewClickRepository(db *gorm.DB) *GormClickRepository {
 func (r *GormClickRepository) CreateClick(click *models.Click) error {
 	// TODO : Utiliser GORM pour créer une nouvelle entrée dans la table "clicks"
 	if err := r.db.Create(click).Error; err != nil {
-		return fmt.Errorf("failed to insert click: %w", err)
+		return fmt.Errorf("failed to create click: %w", err)
 	}
 	return nil
 }
@@ -49,6 +49,7 @@ func (r *GormClickRepository) CountClicksByLinkID(linkID uint) (int, error) {
 	}
 
 	return int(count), nil // Convert the int64 count to an int
+
 }
 
 // SaveClick enregistre un ClickEvent dans la base de données.
