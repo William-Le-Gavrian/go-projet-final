@@ -93,8 +93,8 @@ Suivez ces étapes pour mettre en place le projet et tester votre application (q
 
 1. **Clonez le dépôt :**
 ```bash
-git clone https://github.com/axellelanca/urlshortener.git
-cd urlshortener # Naviguez vers le dossier du projet cloné
+git clone https://github.com/William-Le-Gavrian/go-projet-final.git
+cd go-projet-final # Naviguez vers le dossier du projet cloné
 ```
 
 2. **Téléchargez et nettoyez les dépendances :**
