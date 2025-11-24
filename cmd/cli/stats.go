@@ -6,7 +6,6 @@ import (
 	"os"
 
 	cmd2 "github.com/William-Le-Gavrian/go-projet-final/cmd"
-	"github.com/William-Le-Gavrian/go-projet-final/internal/api"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/models"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/repository"
 	"github.com/William-Le-Gavrian/go-projet-final/internal/services"
@@ -78,7 +77,7 @@ Exemple:
 			os.Exit(1)
 		}
 
-		fmt.Printf("Statistiques pour le code court: %s\n", link.Shortcode)
+		fmt.Printf("Statistiques pour le code court: %s\n", link.ShortCode)
 		fmt.Printf("URL longue: %s\n", link.LongURL)
 		fmt.Printf("Total de clics: %d\n", totalClicks)
 	},
