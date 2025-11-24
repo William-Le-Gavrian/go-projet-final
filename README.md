@@ -98,7 +98,7 @@ git clone https://github.com/William-Le-Gavrian/go-projet-final.git
 cd go-projet-final # Naviguez vers le dossier du projet cloné
 ```
 
-###2. **Téléchargez et nettoyez les dépendances :**
+### 2. Téléchargez et nettoyez les dépendances :
 
 ```bash
 go mod tidy
