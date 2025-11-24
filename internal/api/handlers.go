@@ -156,14 +156,19 @@ func GetLinkStatsHandler(linkService *services.LinkService) gin.HandlerFunc {
 		// Gérer le cas où le lien n'est pas trouvé.
 		// toujours avec l'erreur Gorm ErrRecordNotFound
 		// Gérer d'autres erreurs
-		link, totalClicks, err := linkService.GetLinkStats(shortCode)
+		link, err := linkService.GetLinkByShortCode(shortCode)
 		if err != nil {
 			if errors.Is(err, gorm.ErrRecordNotFound) {
-				c.JSON(http.StatusNotFound, gin.H{"error": "link not found"})
+				c.JSON(http.StatusNotFound, gin.H{"error": "Link not found"})
 				return
 			}
-			log.Printf("Error retrieving stats for %s: %v", shortCode, err)
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		totalClicks, err := linkService.CountClicks(link.ID)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
 
