@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/William-Le-Gavrian/go-projet-final/internal/config"
+	"github.com/spf13/cobra"
 )
 
 // cfg est la variable globale qui contiendra la configuration chargée.
@@ -23,10 +24,23 @@ var Cfg *config.Config
 // rootCmd représente la commande de base lorsque l'on appelle l'application sans sous-commande.
 // C'est le point d'entrée principal pour Cobra.
 
+var RootCmd = &cobra.Command{
+	Use:   "url-shortener",
+	Short: "Service de raccourcissement d'URLs avec API REST et CLI",
+	Long: `'url-shortener' est une application complète pour raccourcir des URLs.
+	Elle inclut un serveur API pour le raccourcissement et la redirection,
+	ainsi qu'une interface en ligne de commande.
+	
+	Utilisez 'url-shortener [command] --help' pour plus d'informations sur une commande.`,
+}
+
 // Execute est le point d'entrée principal pour l'application Cobra.
 // Il est appelé depuis 'main.go'
 func Execute() {
 	// TODO
+	if err := RootCmd.Execute(); err != nil {
+		log.Fatalf("Erreur lors de l'exécution de la commande: %v", err)
+	}
 }
 
 // init() est une fonction spéciale de Go qui s'exécute automatiquement
@@ -34,6 +48,8 @@ func Execute() {
 // et ajouter toutes les sous-commandes.
 func init() {
 	// TODO Initialiser la configuration globale avec OnInitialize
+
+	cobra.OnInitialize(initConfig)
 
 	// IMPORTANT : Ici, nous n'appelons PAS RootCmd.AddCommand() directement
 	// pour les commandes 'server', 'create', 'stats', 'migrate'.
